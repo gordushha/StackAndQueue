@@ -16,11 +16,32 @@ public:
 	TQueue(const std::initializer_list<A>& list) :TStack<A>(list) { head = 0; this->tail = 0; count = this->size; };
 	~TQueue() { head = 0; this->tail = 0; count = 0; this->size = 0; };
 
+	TQueue(TStack<A> _s)
+	{
+		this->size = _s.size;
+		this->arr = new A[this->size];
+		this->tail = _s.tail;
+		head = 0;
+		count = tail;
+		for (int i = 0; i < size; i++)
+			this->arr[i] = _s.arr[i];
+	}
+
 	void push(A elem);
 	A pop();
 
 	bool IsFull();
 	bool IsEmpty();
+
+	A find_min()
+	{
+		A temp = arr[head];
+		for (int i = head; i < head + count; i++)
+
+			if (arr[i % this->size] < temp)
+				temp = arr[i % this->size];
+		return temp;
+	}
 
 	friend ostream& operator<<(ostream& ostr, const TQueue<A>& lhs)
 	{
@@ -103,3 +124,4 @@ ostream& operator<<(ostream& ostr, const TQueue<A>& lhs)
 	ostr << endl;
 	return ostr;
 }*/
+

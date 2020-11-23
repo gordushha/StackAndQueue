@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+//#include "Queue.h"
 using namespace std;
 template<class A>
 class TStack
@@ -17,6 +18,8 @@ public:
 	bool IsFull();
 	bool IsEmpty();
 
+	//TQueue<A> transform();
+
 	TStack(const initializer_list<A>& list) : TStack(list.size())
 	{
 		int count = 0;
@@ -31,6 +34,27 @@ public:
 	void push(A elem);
 	A pop();
 
+	A find_min()
+	{
+		A temp = arr[0];
+		for (int i = 1; i < tail; i++)
+			if (arr[i] < temp)
+				temp = arr[i];
+		return temp;
+	}
+
+	A find(A elem)
+	{
+		A pos = -1;
+		for (int i = 0; i < tail; i++)
+			if (arr[i] == elem)
+			{
+				pos = i;
+				return pos;
+			}
+		return pos;
+	}
+
 	friend ostream& operator<<(ostream& ostr, const TStack<A>& lhs)
 	{
 		for (int i = 0; i < lhs.tail; i++)
@@ -38,6 +62,9 @@ public:
 		ostr << endl;
 		return ostr;
 	};
+
+	template<class B>
+	friend class TQueue;
 };
 
 template<class A>
@@ -96,6 +123,10 @@ inline bool TStack<A>::IsEmpty()
 	else
 		return false;
 }
+
+
+
+
 
 /*template<class A>
 inline TStack<A>::TStack(const std::initializer_list<A>& list) : TStack(list.size())
