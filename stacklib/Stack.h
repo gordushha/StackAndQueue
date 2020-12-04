@@ -36,22 +36,30 @@ public:
 
 	A find_min()
 	{
-		A temp = arr[0];
+		TStack<A> t(*this);
+		A min = t.pop();
 		for (int i = 1; i < tail; i++)
-			if (arr[i] < temp)
-				temp = arr[i];
-		return temp;
+		{
+			A temp = t.pop();
+			if (min > temp)
+				min = temp;
+		}
+
+		return min;
 	}
 
-	A find(A elem)
+	int find(A elem)
 	{
-		A pos = -1;
+		TStack<A> t(*this);
+		int pos = tail - 1;
 		for (int i = 0; i < tail; i++)
-			if (arr[i] == elem)
-			{
-				pos = i;
+		{
+			A temp = t.pop();
+			if (temp == elem)
 				return pos;
-			}
+			pos--;
+		}
+
 		return pos;
 	}
 

@@ -35,12 +35,16 @@ public:
 
 	A find_min()
 	{
-		A temp = arr[head];
-		for (int i = head; i < head + count; i++)
+		TQueue<A> t(*this);
+		A min = t.pop();
+		for (int i = 1; i < count; i++)
+		{
+			A temp = t.pop();
+			if (min > temp)
+				min = temp;
+		}
 
-			if (arr[i % this->size] < temp)
-				temp = arr[i % this->size];
-		return temp;
+		return min;
 	}
 
 	friend ostream& operator<<(ostream& ostr, const TQueue<A>& lhs)

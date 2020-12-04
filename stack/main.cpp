@@ -5,12 +5,12 @@
 int main()
 {
 	TStack<int> a({ 5, 10, 22 });
-
+	cout << a.find(5) << endl;
 	cout << "Min in this stack: " << a.find_min() << endl;
-
+	
 	for (int i = 0; i < 3; i++)
 		cout << a.pop() << ' ';
-
+	
 	cout << endl;
 
 
